@@ -1,12 +1,16 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
 import { recipes } from "../data/recipes";
 import FoodCard from "../components/FoodCard";
-// import { ScrollView } from "react-native-gesture-handler";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../types";
 
-// Page pour la liste des recettes
-// La liste sera récupérée du fichier data/recipes.js exportant un tableau d’objets
+type SearchScreenNavigationProp = StackNavigationProp<RootStackParamList, "DrawerNavigator">;
 
-export default function SearchScreen({ navigation }) {
+type Props = {
+  navigation: SearchScreenNavigationProp;
+};
+
+export default function SearchScreen({ navigation }: Props) {
   const data = recipes.map((recipe, i) => {
     return <FoodCard key={i} props={{ ...recipe }} navigation={navigation} />;
   });

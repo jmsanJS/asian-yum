@@ -1,16 +1,35 @@
-import { StyleSheet, Text, View, Image, Pressable, SafeAreaView } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  SafeAreaView,
+} from "react-native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../types";
 
-export default function HomeScreen({navigation}) {
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
+
+type Props = {
+  navigation: HomeScreenNavigationProp;
+};
+
+export default function HomeScreen({ navigation }: Props) {
+  // console.log("homescreen ==> ", navigation);
   return (
     <SafeAreaView style={styles.container}>
-      <Image source={require('../assets/images/home.jpg')} style={styles.homeImg}/>
+      <Image
+        source={require("../assets/images/home.jpg")}
+        style={styles.homeImg}
+      />
       <View style={styles.textContainer}>
         <Text style={styles.title}>Asian Yum</Text>
         <View style={styles.openAppTextContainer}>
-          <Text style={styles.openAppText}>Let's go!  </Text>
-          <Pressable onPress={() => navigation.navigate("DrawerNavigator")}>
+          <Text style={styles.openAppText}>Let's go! </Text>
+          <Pressable onPress={() => navigation.navigate("DrawerNavigator", {screen: "Search"})}>
             <FontAwesomeIcon icon={faArrowRight} size={25} color="#FFF" />
           </Pressable>
         </View>
@@ -22,7 +41,7 @@ export default function HomeScreen({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#655074"
+    backgroundColor: "#655074",
   },
   homeImg: {
     width: "100%",
@@ -45,7 +64,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
-    alignItems: "center"
+    alignItems: "center",
   },
   openAppText: {
     color: "#FFF",

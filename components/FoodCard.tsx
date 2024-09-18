@@ -1,6 +1,13 @@
 import { StyleSheet, Text, View, Pressable, Image } from "react-native";
+import { NavigationProp } from "@react-navigation/native";
+import { RecipeProps } from '../types'
 
-export default function FoodCard({ props, navigation }) {
+interface FoodCardProps {
+  props: RecipeProps;
+  navigation: NavigationProp<any>;
+}
+
+export default function FoodCard({ props, navigation }: FoodCardProps) {
   return (
     <View style={[styles.card, { backgroundColor: props.color }]}>
       <Pressable

@@ -23,14 +23,25 @@ import {
   updateServings,
 } from "../reducers/favorites";
 import { useState, useEffect } from "react";
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Bookmark, RootStackParamList } from "../types";
+import { RootState } from "../App";
 
-// Page pour les détails d’une recette
-export default function RecipeScreen({ navigation, route }) {
-  const [servings, setServings] = useState(1);
-  const bookmarks = useSelector((state) => state.favorites.value);
+type RecipeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Recipe'>;
+type RecipeScreenRouteProp = RouteProp<RootStackParamList, 'Recipe'>;
+
+type Props = {
+  navigation: RecipeScreenNavigationProp;
+  route: RecipeScreenRouteProp;
+};
+
+export default function RecipeScreen({ navigation, route }: Props) {
+  const [servings, setServings] = useState<number>(1);
+  const bookmarks = useSelector((state: RootState) => state.favorites.value);
   const dispatch = useDispatch();
   const { recipe } = route.params;
-  const bookmarkUpdate = bookmarks.find((bookmark) => bookmark.id === recipe.id);
+  const bookmarkUpdate = bookmarks.find((bookmark: Bookmark) => bookmark.id === recipe.id);
 
   useEffect(()=>{
     if (bookmarkUpdate && bookmarkUpdate.servings !== servings) {
@@ -49,7 +60,7 @@ export default function RecipeScreen({ navigation, route }) {
     );
   });
 
-  const isBookmarked = bookmarks.some((bookmark) => bookmark.id === recipe.id);
+  const isBookmarked = bookmarks.some((bookmark: Bookmark) => bookmark.id === recipe.id);
 
   const handleFavoriteClick = () => {
     if (isBookmarked) {
@@ -81,7 +92,7 @@ export default function RecipeScreen({ navigation, route }) {
       <View style={[styles.topContainer, { backgroundColor: recipe.color }]}>
         <Pressable
           style={{ width: 50 }}
-          onPress={() => navigation.navigate("Search")}
+          onPress={() => navigation.navigate("DrawerNavigator", {screen: "Search"})}
         >
           <FontAwesomeIcon icon={faArrowLeft} size={20} style={styles.arrow} />
         </Pressable>

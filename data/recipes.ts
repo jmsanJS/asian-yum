@@ -198,6 +198,7 @@ export const recipes = [
     serving: '600 - 700G',
     servingNb: 1,
     longDesc: "This dish has a blend of flavors and textures that will surely please anyone's palate and it's a meal on its own.",
+    level: 'difficult',
     time: '30 min',
     rating: 3.5,
     ingredients: [

@@ -16,6 +16,7 @@ import HomeScreen from "./screens/HomeScreen";
 import RecipeScreen from "./screens/RecipeScreen";
 import SearchScreen from "./screens/SearchScreen";
 import MyRecipesScreen from "./screens/MyRecipesScreen";
+import { RootStackParamList, RootDrawerParamList } from "./types";
 
 const reducers = combineReducers({ favorites });
 const persistConfig = { key: "asian-yum", storage: AsyncStorage };
@@ -26,15 +27,18 @@ const store = configureStore({
 });
 const persistor = persistStore(store);
 
-const Stack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+const RootStack = createNativeStackNavigator<RootStackParamList>();
+const RootDrawer = createDrawerNavigator<RootDrawerParamList>();
 
 const DrawerNavigator = () => {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Search" component={SearchScreen} />
-      <Drawer.Screen name="My recipes" component={MyRecipesScreen} />
-    </Drawer.Navigator>
+    <RootDrawer.Navigator>
+      <RootDrawer.Screen name="Search" component={SearchScreen} />
+      <RootDrawer.Screen name="My recipes" component={MyRecipesScreen} />
+    </RootDrawer.Navigator>
   );
 };
 
@@ -43,11 +47,11 @@ export default function App() {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <NavigationContainer>
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
-            <Stack.Screen name="Recipe" component={RecipeScreen} />
-          </Stack.Navigator>
+          <RootStack.Navigator screenOptions={{ headerShown: false }}>
+            <RootStack.Screen name="Home" component={HomeScreen} />
+            <RootStack.Screen name="DrawerNavigator" component={DrawerNavigator} />
+            <RootStack.Screen name="Recipe" component={RecipeScreen} />
+          </RootStack.Navigator>
         </NavigationContainer>
       </PersistGate>
     </Provider>
