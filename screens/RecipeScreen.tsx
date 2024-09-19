@@ -221,8 +221,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   name: {
-    fontSize: 26,
-    fontWeight: "500",
+    fontSize: 28,
+    fontWeight: "bold",
+    fontFamily: "serif",
+    letterSpacing: 0.5,
   },
   desc: {
     color: "#333",

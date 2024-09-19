@@ -18,7 +18,6 @@ type Props = {
 };
 
 export default function HomeScreen({ navigation }: Props) {
-  // console.log("homescreen ==> ", navigation);
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -28,9 +27,12 @@ export default function HomeScreen({ navigation }: Props) {
       <View style={styles.textContainer}>
         <Text style={styles.title}>Asian Yum</Text>
         <View style={styles.openAppTextContainer}>
-          <Text style={styles.openAppText}>Let's go! </Text>
-          <Pressable onPress={() => navigation.navigate("DrawerNavigator", {screen: "Search"})}>
-            <FontAwesomeIcon icon={faArrowRight} size={25} color="#FFF" />
+          <Pressable
+            onPress={() => navigation.navigate("DrawerNavigator", { screen: "Search" })}
+            style={styles.pressableContainer}
+          >
+            <Text style={styles.openAppText}>Let's go!</Text>
+            <FontAwesomeIcon icon={faArrowRight} size={25} color="#FFF" style={{ marginLeft: 10 }}/>
           </Pressable>
         </View>
       </View>
@@ -57,11 +59,18 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#FFF",
-    fontSize: 70,
+    marginBottom: 10,
+    fontSize: 50,
     fontWeight: "bold",
+    fontFamily: "serif",
+  },
+  pressableContainer:{
+    paddingLeft: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   openAppTextContainer: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",

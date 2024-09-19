@@ -19,8 +19,8 @@ export default function SearchScreen({ navigation }: Props) {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.textContainer}>
-          <Text style={styles.question}>What do you want to eat today?</Text>
-          <Text style={styles.propositions}>Our daily healthy meal plans</Text>
+          <Text style={styles.question}>So, what's your stomach craving today?</Text>
+          <Text style={styles.propositions}>Feast your eyes on our daily dose of healthy deliciousness!</Text>
         </View>
         <View style={styles.cardsContainer}>{data}</View>
       </ScrollView>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   propositions: {
-    color: "#8B918F",
+    color: "#666",
   },
   cardsContainer: {
     flexDirection: "row",

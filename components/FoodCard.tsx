@@ -45,13 +45,14 @@ const styles = StyleSheet.create({
   name: {
     paddingHorizontal: 10,
     textAlign: "right",
+    fontSize: 15,
     fontWeight: "bold",
     color: "#634E73",
   },
   desc: {
     paddingHorizontal: 10,
     textAlign: "right",
-    color: "#8B918F",
+    color: "#666",
     fontSize: 10,
   },
 });
